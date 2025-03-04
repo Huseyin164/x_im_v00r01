@@ -19,7 +19,7 @@ mixin _CustomLoginButtonMixin
     _isLoadingNotifier.value = true;
     final response = await widget.onOperation.call();
     await safeOperation(() async {
-      if (response) context.router.navigate(const NavigationRoute());
+      //if (response) context.router.navigate(const NavigationRoute());
       _isLoadingNotifier.value = false;
     });
   }

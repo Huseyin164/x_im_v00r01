@@ -41,7 +41,6 @@ class DenemeResponseModel extends INetworkModel<DenemeResponseModel>
   Map<String, dynamic> toJson() => _$DenemeResponseModelToJson(this);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         content,
         pageable,

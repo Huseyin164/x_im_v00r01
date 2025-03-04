@@ -5,6 +5,7 @@ import 'package:widgets/widgets.dart';
 import 'package:x_im_v00r01/product/init/application_initialize.dart';
 import 'package:x_im_v00r01/product/init/product_localization.dart';
 import 'package:x_im_v00r01/product/init/state_initialize.dart';
+import 'package:x_im_v00r01/product/init/theme/custom_scroll_behavior.dart';
 import 'package:x_im_v00r01/product/navigation/deeplink/app_router.dart';
 import 'package:x_im_v00r01/product/state/view_model/product_state.dart';
 import 'package:x_im_v00r01/product/state/view_model/product_view_model.dart';
@@ -20,7 +21,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final theme = MediaQuery.of(context).platformBrightness;
     final width = size.width;
     final height = size.height;
     final widthScale = size.width / 375; // Ekran genişliğine göre ölçek
@@ -61,7 +61,10 @@ class MyApp extends StatelessWidget {
               return;
             }
           },
-          child: CustomResponsive.build(context, child),
+          child: ScrollConfiguration(
+            behavior: NoStretchScrollBehavior(),
+            child: CustomResponsive.build(context, child),
+          ),
         );
       },
       theme: context.watch<ProductViewModel>().state.lightThemeData,

@@ -20,11 +20,16 @@
             }
         }
     },
+    "snackbar": {
+        "successfulSignOUT": "Çıkış başarılı!",
+        "successfulSignIN": "Giriş başarılı!"
+    },
     "settings": {
         "title": "Ayarlar",
         "account": "Hesap",
         "login": "Giriş",
         "register": "Kayıt",
+        "signOut": "Çıkış Yap",
         "light": "Açık",
         "dark": "Koyu",
         "system": "Sistem",
@@ -34,6 +39,13 @@
         "default": "Varsayılan",
         "small": "Küçük",
         "large": "Büyük",
+        "legal": {
+            "title": "Yasal",
+            "termOfService": "Kullanım Şartları",
+            "privacyPolicy": "Gizlilik Politikası"
+        },
+        "rateApp": "Rate App",
+        "contactSupport": "Destek ekibiyle iletişime geçin",
         "appearance": {
             "title": "Görünüm",
             "showModal": "Bir Tema Seçin"

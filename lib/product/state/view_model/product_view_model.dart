@@ -17,6 +17,7 @@ final class ProductViewModel extends BaseCubit<ProductState> {
           ProductState(),
         ) {
     _monitorConnection();
+    setTextSize(userCacheOperation.get('fontSize')?.fontSize ?? 12.0);
   }
 
   int selectedindex = 0;
@@ -26,7 +27,7 @@ final class ProductViewModel extends BaseCubit<ProductState> {
   final Connectivity _connectivity = Connectivity();
 
   Future<UserCacheModel> getSettings() async {
-    final settings = userCacheOperation.get('settings');
+    final settings = userCacheOperation.get('fontSize');
     return settings ?? UserCacheModel(user: LoginResponseModel2());
   }
 
@@ -92,6 +93,7 @@ final class ProductViewModel extends BaseCubit<ProductState> {
       changeThemeMode(thememode);
     }
   }
+
 
   void readDate(BuildContext context) {
     final now = DateTime.now();

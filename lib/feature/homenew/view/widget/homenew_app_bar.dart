@@ -9,16 +9,14 @@ class HomenewAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(),
+      padding: EdgeInsets.zero,
       child: SizedBox(
         height: 48,
         child: Row(
           children: [
-            Container(
-              child: const CircleAvatar(
-                backgroundImage: NetworkImage(
-                  'https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUzMDJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMHdlYXJpbmd8ZW58MXx8fHwxNjUzNTg3NjU1&ixlib=rb-1.2.1&q=80&w=1080',
-                ),
+            const CircleAvatar(
+              backgroundImage: NetworkImage(
+                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMDUzMDJ8MHwxfHNlYXJjaHw1fHx3b21hbiUyMHdlYXJpbmd8ZW58MXx8fHwxNjUzNTg3NjU1&ixlib=rb-1.2.1&q=80&w=1080',
               ),
             ),
             const SizedBox(

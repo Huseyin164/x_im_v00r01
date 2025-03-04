@@ -4,8 +4,8 @@ enum Locales {
   en(Locale('en', 'US')),
   tr(Locale('tr', 'TR'));
 
-  final Locale locale;
   const Locales(this.locale);
+  final Locale locale;
 
 /* burada önce tr ve en seçenekleri oluşturulur 
    sonra her seçeneğin içindeki Locale nesnelerine

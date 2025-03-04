@@ -9,7 +9,7 @@ void showAppearanceModal(
   BuildContext context,
   ThemeData theme,
   String current,
-  SettingsViewModel settingsViewModel
+  SettingsViewModel settingsViewModel,
 ) {
   showModalBottomSheet<Container>(
     context: context,

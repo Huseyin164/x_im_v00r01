@@ -18,10 +18,14 @@ abstract class  LocaleKeys {
   static const general_dialog_version = 'general.dialog.version';
   static const general_dialog = 'general.dialog';
   static const general = 'general';
+  static const snackbar_successfulSignOUT = 'snackbar.successfulSignOUT';
+  static const snackbar_successfulSignIN = 'snackbar.successfulSignIN';
+  static const snackbar = 'snackbar';
   static const settings_title = 'settings.title';
   static const settings_login = 'settings.login';
   static const settings_register = 'settings.register';
   static const settings_account = 'settings.account';
+  static const settings_signOut = 'settings.signOut';
   static const settings_light = 'settings.light';
   static const settings_dark = 'settings.dark';
   static const settings_system = 'settings.system';
@@ -43,5 +47,21 @@ abstract class  LocaleKeys {
   static const settings_notifications_showModal = 'settings.notifications.showModal';
   static const settings_notifications = 'settings.notifications';
   static const settings = 'settings';
+  static const onboardings_skip = 'onboardings.skip';
+  static const onboardings_next = 'onboardings.next';
+  static const onboardings_start = 'onboardings.start';
+  static const onboardings_step1_title = 'onboardings.step1.title';
+  static const onboardings_step1_content = 'onboardings.step1.content';
+  static const onboardings_step1 = 'onboardings.step1';
+  static const onboardings_step2_title = 'onboardings.step2.title';
+  static const onboardings_step2_content = 'onboardings.step2.content';
+  static const onboardings_step2 = 'onboardings.step2';
+  static const onboardings_step3_title = 'onboardings.step3.title';
+  static const onboardings_step3_content = 'onboardings.step3.content';
+  static const onboardings_step3 = 'onboardings.step3';
+  static const onboardings_step4_title = 'onboardings.step4.title';
+  static const onboardings_step4_content = 'onboardings.step4.content';
+  static const onboardings_step4 = 'onboardings.step4';
+  static const onboardings = 'onboardings';
 
 }

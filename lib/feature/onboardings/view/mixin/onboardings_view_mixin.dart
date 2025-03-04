@@ -19,7 +19,6 @@ mixin OnboardingsViewMixin on BaseState<OnboardingsView> {
 
   @override
   void initState() {
-    // TODO: implement activate
     super.initState();
     productNetworkErrorManager = ProductNetworkErrorManager(context);
     ProductStateItems.productNetworkManager.listenErrorState(

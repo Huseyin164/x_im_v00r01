@@ -9,7 +9,9 @@ final class UserCacheModel with CacheModel {
     this.isFirstTime,
     this.themeMode,
     this.language,
-    this.storyslist,
+    this.selectedTextSize,
+    this.fontSize,
+
   });
 
   UserCacheModel.empty()
@@ -17,13 +19,16 @@ final class UserCacheModel with CacheModel {
         isFirstTime = true,
         themeMode = null,
         language = null,
-        storyslist = null;
+        selectedTextSize = null,
+        fontSize = 12.0;
 
   final LoginResponseModel2? user;
   final bool? isFirstTime; // Opsiyonel alan
   final ThemeMode? themeMode;
   final Locale? language;
-  final List<StoryModel>? storyslist; // Opsiyonel alan
+  final List<bool>? selectedTextSize;
+  final double? fontSize;
+
 
   @override
   UserCacheModel fromDynamicJson(dynamic json) {
@@ -39,9 +44,11 @@ final class UserCacheModel with CacheModel {
       language: jsonMap['language'] != null
           ? Locale(jsonMap['language'].toString())
           : null,
-      storyslist: (jsonMap['storyslist'] as List<dynamic>?)
-          ?.map((item) => StoryModel.fromJson(item as Map<String, dynamic>))
+      selectedTextSize: (jsonMap['selectedTextSize'] as List<dynamic>?)
+          ?.map((e) => e as bool)
           .toList(),
+      fontSize: jsonMap['fontSize'] as double?,
+
     );
   }
 
@@ -55,8 +62,9 @@ final class UserCacheModel with CacheModel {
       'isFirstTime': isFirstTime,
       'themeMode': themeMode.toString().split('.').last,
       'language': language?.languageCode,
-      'storyslist': storyslist?.map((story) => story.toJson()).toList() ??
-          [], // storyslist'i al!
+      'selectedTextSize': selectedTextSize,
+      'fontSize': fontSize,
+
     };
   }
 
@@ -65,14 +73,18 @@ final class UserCacheModel with CacheModel {
     bool? isFirstTime,
     ThemeMode? themeMode,
     Locale? language,
-    List<StoryModel>? storyslist,
+    List<bool>? selectedTextSize,
+    double? fontSize,
+
   }) {
     return UserCacheModel(
       user: user ?? this.user,
       isFirstTime: isFirstTime ?? this.isFirstTime,
       themeMode: themeMode ?? this.themeMode,
       language: language ?? this.language,
-      storyslist: storyslist ?? this.storyslist,
+      selectedTextSize: selectedTextSize ?? this.selectedTextSize,
+      fontSize: fontSize ?? this.fontSize,
+
     );
   }
 

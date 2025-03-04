@@ -1,1 +1,7 @@
 include: package:very_good_analysis/analysis_options.yaml
+analyzer:
+  errors:
+    comment_references: ignore
+    public_member_api_docs: ignore
+  exclude:
+    - "**/*.g.dart"

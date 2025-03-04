@@ -7,14 +7,26 @@ part 'user.g.dart';
 
 @JsonSerializable()
 class User extends INetworkModel<User> with EquatableMixin {
-  User({this.userId, this.id, this.title, this.body});
+  User({
+    this.userId,
+    this.id,
+    this.title,
+    this.body,
+    this.avatar_url,
+    this.email,
+    this.full_name,
+  });
 
   /// Get user from json
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
   final int? userId;
   final int? id;
   final String? title;
   final String? body;
+  final String? avatar_url;
+  final String? email;
+  final String? full_name;
 
   /*
    işleyiş sırasından bakarsan 1. factory contructure çalışır  _$UserFromJson(json) tetiklenir ,
@@ -23,7 +35,8 @@ class User extends INetworkModel<User> with EquatableMixin {
    ye atamayı yapar .
   */
   @override
-  List<Object?> get props => [userId, id, title, body];
+  List<Object?> get props =>
+      [userId, id, title, body, avatar_url, email, full_name];
 
   /// User model to map object
   @override
@@ -39,12 +52,18 @@ class User extends INetworkModel<User> with EquatableMixin {
     int? id,
     String? title,
     String? body,
+    String? avatar_url,
+    String? email,
+    String? full_name,
   }) {
     return User(
       userId: userId ?? this.userId,
       id: id ?? this.id,
       title: title ?? this.title,
       body: body ?? this.body,
+      avatar_url: avatar_url ?? this.avatar_url,
+      email: email ?? this.email,
+      full_name: full_name ?? this.full_name,
     );
   }
 }

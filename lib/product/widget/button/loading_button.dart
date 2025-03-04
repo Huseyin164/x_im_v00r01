@@ -12,7 +12,7 @@ final class LoadingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return ElevatedButton.icon(
       onPressed: () {},
       style: ButtonStyle(
         shape: WidgetStateProperty.all(
@@ -24,9 +24,9 @@ final class LoadingButton extends StatelessWidget {
           Colors.black, // Doğrudan Colors.black olarak geçilir
         ),
       ),
-      child: const SizedBox(
-        width: 28,
-        height: 28,
+      label: const SizedBox(
+        width: 20,
+        height: 20,
         child: CircularProgressIndicator(
           color: Colors.white,
         ),

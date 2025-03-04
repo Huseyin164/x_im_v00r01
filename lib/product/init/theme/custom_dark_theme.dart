@@ -13,29 +13,17 @@ final class CustomDarkTheme implements CustomTheme {
       );
 
   TextTheme textTheme(double fontSize) {
-    return GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme).copyWith(
-      titleSmall: ThemeData.dark()
-          .textTheme
-          .titleSmall
-          ?.copyWith(fontSize: fontSize + 2),
-      titleMedium: ThemeData.dark()
-          .textTheme
-          .titleSmall
-          ?.copyWith(fontSize: fontSize + 2),
-      titleLarge: ThemeData.dark()
-          .textTheme
-          .titleSmall
-          ?.copyWith(fontSize: fontSize + 8),
-      bodySmall:
-          ThemeData.dark().textTheme.bodySmall?.copyWith(fontSize: fontSize),
-      bodyMedium: ThemeData.dark()
-          .textTheme
-          .bodyMedium
-          ?.copyWith(fontSize: fontSize + 2),
-      bodyLarge: ThemeData.dark()
-          .textTheme
-          .bodyLarge
-          ?.copyWith(fontSize: fontSize + 4),
+    // GoogleFonts.poppinsTextTheme'i kullanarak temel bir textTheme oluşturuyoruz
+    final baseTextTheme =
+        GoogleFonts.poppinsTextTheme(ThemeData.dark().textTheme);
+
+    return baseTextTheme.copyWith(
+      titleSmall: baseTextTheme.titleSmall?.copyWith(fontSize: fontSize + 2),
+      titleMedium: baseTextTheme.titleMedium?.copyWith(fontSize: fontSize + 4),
+      titleLarge: baseTextTheme.titleLarge?.copyWith(fontSize: fontSize + 8),
+      bodySmall: baseTextTheme.bodySmall?.copyWith(fontSize: fontSize),
+      bodyMedium: baseTextTheme.bodyMedium?.copyWith(fontSize: fontSize + 2),
+      bodyLarge: baseTextTheme.bodyLarge?.copyWith(fontSize: fontSize + 4),
     );
   }
 

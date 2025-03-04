@@ -25,6 +25,6 @@ final class ProductLocalization extends EasyLocalization {
     required BuildContext context,
     required Locale value,
   }) async {
-    context.setLocale(value);
+    await context.setLocale(value);
   }
 }

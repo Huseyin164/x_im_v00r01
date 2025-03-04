@@ -17,7 +17,6 @@ class _StoryyViewState extends BaseState<StoryyView> with StoryViewMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),

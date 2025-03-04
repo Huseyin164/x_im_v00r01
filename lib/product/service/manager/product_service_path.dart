@@ -8,8 +8,8 @@ enum ProductServicePath {
   login('api/v1/auth'),
   secure('secure');
 
-  final String value;
   const ProductServicePath(this.value);
+  final String value;
 
   /// [withQuery] is add query to path
   ///

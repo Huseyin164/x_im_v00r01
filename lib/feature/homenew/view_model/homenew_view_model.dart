@@ -13,32 +13,37 @@ final class HomenewViewModel extends BaseCubit<HomenewState> {
   HomenewViewModel({
     required ProjectOperation operationService,
     required HiveCacheOperation<UserCacheModel> userCacheOperation,
-    required ScrollController scrollController,
     required PageController pageController,
   })  : _projectOperationService = operationService,
         userCacheOperation = userCacheOperation,
-        scrollController = scrollController,
         pageController = pageController,
         super(
           const HomenewState(
             isLoading: false,
             opacity: 0.00001,
+            imageHeight: 250,
+            data: [
+              {
+                'name': 'Acun Ilıcalı',
+                'birth_date': '1969-05-29',
+                'photo_url': '',
+                'story': 'Acun Story',
+                'title': 'Story of Acun',
+              },
+              {
+                'name': 'Acun Ilıcalı',
+                'birth_date': '1969-05-29',
+                'photo_url': '',
+                'story': 'Acun Story',
+                'title': 'Story of Acun',
+              }
+            ],
           ),
-        ) {
-    _initScrollListener();
-  }
+        );
 
   final ProjectOperation _projectOperationService;
   final HiveCacheOperation<UserCacheModel> userCacheOperation;
-  final ScrollController scrollController;
   final PageController pageController;
-  double scrollOffset = 0;
-  final maxHeaderHeight = 400.1;
-  final minHeaderHeight = kToolbarHeight;
-  double opacity = 0;
-  double titleSize = 0;
-  int titlemaxline = 3;
-  double oldscrolloffset = 0;
 
   EdgeInsets dynamicPadding = const EdgeInsets.only(left: 8, right: 8, top: 20);
 
@@ -56,67 +61,34 @@ final class HomenewViewModel extends BaseCubit<HomenewState> {
   }
 
   void favoritesButtton() {}
-  Future<void> fetchStorysV(BuildContext context) async {
-    var response = userCacheOperation.get('storyslist')?.storyslist;
-    final now = DateTime.now();
-    print('viewmodel: $now');
-    //final firststory = response?[0];
 
-    if (response == null /*|| now != firststory?.createdAt*/) {
-      emit(state.copyWith(placeholder: true));
-      response = await _projectOperationService.fetchStorys();
-      emit(state.copyWith(storyslist: response));
-      userCacheOperation
-        ..remove('storyslist')
-        ..put(
-          'storyslist',
-          UserCacheModel(storyslist: response),
-        );
-    } else {
-      emit(state.copyWith(storyslist: response));
-      emit(state.copyWith(placeholder: false));
-    }
+
+  void setData(List<Map<String, dynamic>>? data) {
+    emit(
+      state.copyWith(
+        data: data,
+        isLoading: true,
+      ),
+    );
   }
 
-  void _initScrollListener() {
-    scrollController.addListener(() {
-      scrollOffset = scrollController.offset;
-      opacity = (scrollOffset <= maxHeaderHeight - minHeaderHeight)
-          ? 1 - (scrollOffset / (maxHeaderHeight - minHeaderHeight))
-          : 0.001;
-      emit(state.copyWith(opacity: opacity));
-
-      if ((scrollOffset - oldscrolloffset).abs() > 1) {
-        if (scrollOffset < oldscrolloffset) {
-          if (scrollOffset < maxHeaderHeight / 1.5) {
-            oldscrolloffset = 0;
-            titlemaxline = 3;
-            dynamicPadding = const EdgeInsets.only(left: 8, right: 8, top: 20);
-
-            _animateScroll(0);
-          }
-        } else if (scrollOffset > 0) {
-          if (scrollOffset > maxHeaderHeight / 2) {
-            oldscrolloffset = maxHeaderHeight;
-            titleSize = scrollOffset / (maxHeaderHeight - minHeaderHeight);
-            if (titleSize > 0.8) titleSize = 0.8;
-            titlemaxline = 1;
-            dynamicPadding = const EdgeInsets.only();
-
-            _animateScroll(maxHeaderHeight);
-          }
-        }
-      }
-    });
-  }
-
-  void _animateScroll(double target) {
-    Timer(const Duration(milliseconds: 400), () {
-      scrollController.animateTo(
-        target,
-        duration: const Duration(milliseconds: 800),
-        curve: Curves.easeOut,
+  void setImageHeight(double imageHeight, double screenHeight) {
+    if (imageHeight > screenHeight) {
+      emit(
+        state.copyWith(
+          imageHeight: screenHeight * 0.6,
+          isLoading: true,
+        ),
       );
-    });
+      return;
+    }
+    emit(
+      state.copyWith(
+        imageHeight: imageHeight,
+        isLoading: true,
+      ),
+    );
   }
+
+  void increaseFav() {}
 }

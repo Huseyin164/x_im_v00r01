@@ -17,7 +17,6 @@ mixin LoadingViewMixin on BaseState<LoadingView> {
 
   @override
   void initState() {
-    // TODO: implement activate
     super.initState();
     productNetworkErrorManager = ProductNetworkErrorManager(context);
     ProductStateItems.productNetworkManager.listenErrorState(
@@ -32,6 +31,7 @@ mixin LoadingViewMixin on BaseState<LoadingView> {
 
   Future<void> _initializeAsyncWork() async {
     Future.delayed(const Duration(seconds: 5), () {
+      if (!mounted) return;
       context.router.replaceAll([const NavigationRoute()]);
     });
   }

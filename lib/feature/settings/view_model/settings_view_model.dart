@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:gen/gen.dart';
 import 'package:x_im_v00r01/feature/settings/view_model/state/settings_state.dart';
 import 'package:x_im_v00r01/product/cache/model/user_cache_model.dart';
 import 'package:x_im_v00r01/product/service/interface/project_operation.dart';
@@ -22,6 +23,12 @@ final class SettingsViewModel extends BaseCubit<SettingsState> {
     emit(state.copyWith(isLoading: !state.isLoading));
   }
 
+  void setUserID({String? avatarUrl, String? fullName}) {
+    emit(
+      state.copyWith(user: User(avatar_url: avatarUrl, full_name: fullName)),
+    );
+  }
+
   void themeModePutHive(ThemeMode mode) {
     userCacheOperation.remove('boxthemeMode'); // Önce eski veriyi sil
     // ignore: cascade_invocations
@@ -34,8 +41,8 @@ final class SettingsViewModel extends BaseCubit<SettingsState> {
   }
 
   void onboardingPutHive() {
-    userCacheOperation.remove('isFirstTime'); // Önce eski veriyi sil
-    userCacheOperation.put(
+    userCacheOperation..remove('isFirstTime') // Önce eski veriyi sil
+    ..put(
       'isFirstTime',
       UserCacheModel(
         isFirstTime: true,

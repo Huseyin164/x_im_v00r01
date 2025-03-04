@@ -1,8 +1,7 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kartal/kartal.dart';
 import 'package:widgets/widgets.dart';
-import 'package:x_im_v00r01/product/navigation/deeplink/app_router.dart';
 import 'package:x_im_v00r01/product/widget/button/loading_button.dart';
 import 'package:x_im_v00r01/product/widget/button/normal_button.dart';
 
@@ -32,16 +31,22 @@ class _CustomLoginButtonState extends State<CustomLoginButton>
       valueListenable: _isLoadingNotifier,
       builder: (BuildContext context, bool value, Widget? child) {
         if (value) {
-          return LoadingButton(
-            onPressed: () {},
+          return SizedBox(
+            width: context.general.mediaSize.width / 2.7,
+            child: LoadingButton(
+              onPressed: () {},
+            ),
           );
         }
-        return NormalButton(
-          title: widget.title,
-          icon: widget.icon,
-          onPressed: () async {
-            await _onPressed(context);
-          },
+        return SizedBox(
+          width: context.general.mediaSize.width / 2.7,
+          child: NormalButton(
+            title: widget.title,
+            icon: widget.icon,
+            onPressed: () async {
+              await _onPressed(context);
+            },
+          ),
         );
       },
     );

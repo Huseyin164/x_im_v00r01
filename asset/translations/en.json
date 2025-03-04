@@ -20,11 +20,16 @@
             }
         }
     },
+    "snackbar": {
+        "successfulSignOUT": "Sign out successful!",
+        "successfulSignIN": "Sign in successful!"
+    },
     "settings": {
         "title": "Settings",
         "login": "Login",
         "register": "Register",
         "account": "Account",
+        "signOut": "Sign out",
         "light": "Light",
         "dark": "Dark",
         "system": "System",
@@ -34,6 +39,13 @@
         "default": "Default",
         "small": "Small",
         "large": "Large",
+        "legal": {
+            "title": "Legal",
+            "termOfService": "Terms of Service",
+            "privacyPolicy": "Privacy Policy"
+        },
+        "rateApp": "Rate App",
+        "contactSupport": "Contact Support",
         "appearance": {
             "title": "Appearance",
             "showModal": "Select a Theme"

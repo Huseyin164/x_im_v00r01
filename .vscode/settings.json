@@ -31,5 +31,6 @@
     "editor.inlineSuggest.enabled": true,
     "cSpell.words": [
         "isfirstime"
-    ]
+    ],
+    "java.search.scope": "main"
 }

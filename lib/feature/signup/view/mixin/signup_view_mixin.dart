@@ -15,7 +15,6 @@ mixin SignupViewMixin on BaseState<SignupView> {
 
   @override
   void initState() {
-    // TODO: implement activate
     super.initState();
     productNetworkErrorManager = ProductNetworkErrorManager(context);
     ProductStateItems.productNetworkManager.listenErrorState(

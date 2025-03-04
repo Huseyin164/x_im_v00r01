@@ -6,7 +6,7 @@ final class LoadingState extends Equatable {
       {required this.isLoading,
       this.model,
       this.users,
-      this.isfirstime = true});
+      this.isfirstime = true,});
 
   final bool isLoading;
   final List<User>? users;

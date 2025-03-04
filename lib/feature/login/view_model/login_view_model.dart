@@ -17,6 +17,7 @@ final class LoginViewModel extends BaseCubit<LoginState> {
   final passwordController = TextEditingController();
   final AuthenticationOperation _authenticationOperationService;
   final HiveCacheOperation<UserCacheModel> userCacheOperation;
+  
 
   /// Change loading state
   void changeLoading() {
@@ -29,6 +30,7 @@ final class LoginViewModel extends BaseCubit<LoginState> {
     emit(state.copyWith(users: response));
     return !response.isNotEmpty;
   }
+  
 
   Future<bool> buttonloading() async {
     final response = await _authenticationOperationService.inlogin(

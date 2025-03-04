@@ -41,8 +41,8 @@ final class CustomColorScheme {
     onTertiaryFixed: Color(0xff28132e),
     tertiaryFixedDim: Color(0xffddbce0),
     onTertiaryFixedVariant: Color(0xff573e5c),
-    surfaceDim: Color(0xffd9d9e0),
-    surfaceBright: Color(0xfff9f9ff),
+    surfaceDim: Color(0xfff9f9ff),
+    surfaceBright: Color(0xffd9d9e0),
     surfaceContainerLowest: Color(0xffffffff),
     surfaceContainerLow: Color(0xfff3f3fa),
     surfaceContainer: Color(0xffededf4),
@@ -51,6 +51,7 @@ final class CustomColorScheme {
   );
 
   static ColorScheme darkColorScheme = const ColorScheme.dark(
+    
     primary: Color(0xffaac7ff),
     surfaceTint: Color(0xffaac7ff),
     onPrimary: Color(0xff0a305f),

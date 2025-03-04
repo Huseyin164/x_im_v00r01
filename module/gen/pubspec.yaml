@@ -8,25 +8,25 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  envied: ^0.5.4+1
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
 
-  json_annotation: ^4.9.0
   flutter_svg: ^2.0.10+1
+  json_annotation: ^4.9.0
   lottie: ^3.1.3
-  envied: ^0.5.4+1
-  equatable: ^2.0.5
   # for network model
   vexana: ^5.0.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  very_good_analysis: ^6.0.0
   build_runner: ^2.4.13
   envied_generator: ^0.5.4+1
-  json_serializable: ^6.8.0
   flutter_gen_runner: ^5.8.0
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^6.8.0
+  very_good_analysis: ^6.0.0
 
 flutter_gen:
   output: lib/src/asset/

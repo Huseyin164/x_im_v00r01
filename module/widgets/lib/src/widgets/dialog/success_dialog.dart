@@ -10,7 +10,6 @@ final class SuccessDialog extends StatelessWidget {
   final String title;
 
   /// Show the dialog for success
-  /// This will always return [true]
   static Future<bool> show({
     required String title,
     required BuildContext context,
