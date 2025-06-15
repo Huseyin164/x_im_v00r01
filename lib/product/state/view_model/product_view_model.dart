@@ -106,7 +106,7 @@ final class ProductViewModel extends BaseCubit<ProductState> {
     emit(state.copyWith(selectedindex: index));
 
     if (index == 0) {
-      router.replaceNamed('story/1');
+      router.replaceNamed('story/homepage');
     } else if (index == 1) {
       router.replaceNamed('discover');
     } else if (index == 2) {

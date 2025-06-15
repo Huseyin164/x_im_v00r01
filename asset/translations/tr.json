@@ -7,7 +7,9 @@
         "profile": "Profil"
     },
     "home": {
-        "title": "Ana Sayfa"
+        "title": "Ana Sayfa",
+        "today": "Bugün",
+        "yesterday": "Dün"
     },
     "general": {
         "unknown": "Bilinmeyen",

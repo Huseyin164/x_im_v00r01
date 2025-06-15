@@ -20,6 +20,7 @@ final class HomenewViewModel extends BaseCubit<HomenewState> {
         pageController = pageController,
         super(
           const HomenewState(
+            favCount: 321,
             isLoading: true,
             opacity: 0.00001,
             imageHeight: 250,
@@ -101,18 +102,24 @@ final class HomenewViewModel extends BaseCubit<HomenewState> {
     try {
       emit(state.copyWith(isLoadingFavRpc: true));
 
-      final response = await _supabase
-          .rpc<bool>('is_favorite', params: {'story_id': storyId});
       final currentFavorites = Map<String, bool>.from(state.favorites);
 
-      currentFavorites[storyId] = response;
+      final response = await _supabase.rpc<bool>(
+        'is_favorite',
+        params: {'story_id': storyId},
+      ).then<bool>((res) {
+        currentFavorites[storyId] = res;
 
-      emit(
-        state.copyWith(
-          favorites: currentFavorites,
-          isLoadingFavRpc: false,
-        ),
-      );
+        emit(
+          state.copyWith(
+            favorites: currentFavorites,
+            isLoadingFavRpc: false,
+          ),
+        );
+
+        return res;
+      });
+
       return response;
     } catch (e) {
       print('Error checking favorite status: $e');
@@ -155,7 +162,7 @@ final class HomenewViewModel extends BaseCubit<HomenewState> {
   }
 
   void setImageHeight(double imageHeight, double screenHeight) {
-    if (imageHeight > screenHeight) {
+    if (imageHeight > (screenHeight * 0.6)) {
       emit(
         state.copyWith(
           imageHeight: screenHeight * 0.6,
@@ -170,8 +177,11 @@ final class HomenewViewModel extends BaseCubit<HomenewState> {
     );
   }
 
-  void increaseFav(String $3) {
-    if (state.data == null || state.data!.isEmpty) return;
-    toggleFavoriteRPC($3);
+  void setfavCount(int count) {
+    emit(
+      state.copyWith(
+        favCount: count,
+      ),
+    );
   }
 }

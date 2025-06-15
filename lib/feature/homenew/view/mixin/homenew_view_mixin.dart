@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:ui' as ltr;
 
 import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
@@ -73,6 +74,8 @@ mixin HomenewViewMixin on BaseState<HomenewView> {
 
   Future<List> fetchStoryIdData(String storyId) async {
     try {
+      if (storyId.startsWith('homepage') || storyId.startsWith(':storyId'))
+        return [];
       // Veriyi çek
       final data = await supabaseClient
           .from('daily_stories')
@@ -103,13 +106,34 @@ mixin HomenewViewMixin on BaseState<HomenewView> {
     }
   }
 
+  Future<void> fetchFavCount(String storyId) async {
+    try {
+      await supabaseClient
+          .from('story_favorite_counts')
+          .select()
+          .eq('story_id', storyId)
+          .then(
+            (res) => (res as List).isNotEmpty
+                ? res.first['favorite_count'] as int?
+                : null,
+          )
+          .then((count) {
+        if (count == null) return homenewViewModel.setfavCount(0);
+        print('setfavCount: $count');
+        homenewViewModel.setfavCount(count);
+      });
+    } catch (e) {
+      print('fetchFavCount hatası: $e');
+    }
+  }
+
   double calculateTextHeight(String text) {
     final textPainter = TextPainter(
       text: TextSpan(
         text: text,
         style: context.general.textTheme.headlineSmall,
       ),
-      textDirection: TextDirection.ltr,
+      textDirection: ltr.TextDirection.ltr,
       maxLines: 2, // Kaç satır olabileceğini belirle
     )..layout(
         maxWidth: MediaQuery.of(context).size.width,

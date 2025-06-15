@@ -23,6 +23,12 @@ class _HomeFavoriteButtonState extends State<HomeFavoriteButton> {
   @override
   void initState() {
     super.initState();
+    _checkFavoriteStatus();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   Future<void> _checkFavoriteStatus() async {
@@ -32,21 +38,26 @@ class _HomeFavoriteButtonState extends State<HomeFavoriteButton> {
 
   @override
   Widget build(BuildContext context) {
-    _checkFavoriteStatus();
-    return BlocSelector<HomenewViewModel, HomenewState, (bool, bool)>(
+    return BlocSelector<HomenewViewModel, HomenewState, (bool, bool, int)>(
       selector: (state) => (
         state.favorites[widget.storyId] ?? false,
         state.isLoadingFavRpc,
+        state.favCount
       ),
       builder: (context, state) {
         final isFavorite = state.$1;
-        print('isLoading: ${state.$2}');
+        print('isLoading: ${state.$1}');
+
+        final viewModel = context.read<HomenewViewModel>();
+
         return TextButton.icon(
           onPressed: state.$2
               ? null
               : () async {
-                  final viewModel = context.read<HomenewViewModel>();
                   await viewModel.toggleFavoriteRPC(widget.storyId);
+                  isFavorite
+                      ? viewModel.setfavCount(state.$3 - 1)
+                      : viewModel.setfavCount(state.$3 + 1);
                 },
           iconAlignment: IconAlignment.end,
           icon: state.$2
@@ -65,8 +76,15 @@ class _HomeFavoriteButtonState extends State<HomeFavoriteButton> {
                   size: widget.size,
                   color: isFavorite ? Colors.red : widget.color,
                 ),
-          label: const Text(
-            '1664',
+          label: BlocSelector<HomenewViewModel, HomenewState, int>(
+            selector: (state) {
+              return state.favCount;
+            },
+            builder: (context, state) {
+              return Text(
+                state.toString(),
+              );
+            },
           ),
           style: TextButton.styleFrom(
             iconColor: widget.color,

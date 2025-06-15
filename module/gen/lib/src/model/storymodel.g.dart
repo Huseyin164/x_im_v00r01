@@ -9,8 +9,6 @@ part of 'storymodel.dart';
 StoryModel _$StoryModelFromJson(Map<String, dynamic> json) => StoryModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
-      story: json['story'] as String?,
-      title: json['title'] as String?,
       photoUrl: json['photo_url'] as String?,
       birthDate: json['birth_date'] as String?,
       createdAt: json['created_at'] as String?,
@@ -24,8 +22,6 @@ Map<String, dynamic> _$StoryModelToJson(StoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'story': instance.story,
-      'title': instance.title,
       'photoUrl': instance.photoUrl,
       'birthDate': instance.birthDate,
       'createdAt': instance.createdAt,

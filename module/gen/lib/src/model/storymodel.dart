@@ -10,8 +10,6 @@ class StoryModel extends INetworkModel<StoryModel> with EquatableMixin {
   StoryModel({
     this.id,
     this.name,
-    this.story,
-    this.title,
     this.photoUrl,
     this.birthDate,
     this.createdAt,
@@ -27,8 +25,6 @@ class StoryModel extends INetworkModel<StoryModel> with EquatableMixin {
 
   final String? id;
   final String? name;
-  final String? story;
-  final String? title;
   final String? photoUrl;
   final String? birthDate;
   final String? createdAt;
@@ -41,8 +37,6 @@ class StoryModel extends INetworkModel<StoryModel> with EquatableMixin {
   List<Object?> get props => [
         id,
         name,
-        story,
-        title,
         photoUrl,
         birthDate,
         createdAt,
@@ -64,8 +58,6 @@ class StoryModel extends INetworkModel<StoryModel> with EquatableMixin {
   StoryModel copyWith({
     String? id,
     String? name,
-    String? story,
-    String? title,
     String? photoUrl,
     String? birthDate,
     String? createdAt,
@@ -77,8 +69,6 @@ class StoryModel extends INetworkModel<StoryModel> with EquatableMixin {
     return StoryModel(
       id: id ?? this.id,
       name: name ?? this.name,
-      story: story ?? this.story,
-      title: title ?? this.title,
       photoUrl: photoUrl ?? this.photoUrl,
       birthDate: birthDate ?? this.birthDate,
       createdAt: createdAt ?? this.createdAt,

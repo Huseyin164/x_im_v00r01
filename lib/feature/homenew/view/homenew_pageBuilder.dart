@@ -5,9 +5,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
+import 'package:x_im_v00r01/feature/homenew/view/mixin/homenew_pageBuilder_mixin.dart';
 import 'package:x_im_v00r01/feature/homenew/view/widget/home_favorite_button.dart';
 import 'package:x_im_v00r01/feature/homenew/view_model/homenew_view_model.dart';
 import 'package:x_im_v00r01/feature/homenew/view_model/state/homenew_state.dart';
+import 'package:x_im_v00r01/product/state/base/base_state.dart';
 
 class PageBuilderHomenewView extends StatefulWidget {
   const PageBuilderHomenewView({
@@ -20,67 +22,8 @@ class PageBuilderHomenewView extends StatefulWidget {
   State<PageBuilderHomenewView> createState() => _PageBuilderHomenewState();
 }
 
-class _PageBuilderHomenewState extends State<PageBuilderHomenewView> {
-  double textHeight = 50;
-  // ignore: prefer_final_locals
-  late double expandedHeight;
-
-  final ScrollController _scrollController = ScrollController();
-  double _mediaSizeHeight = 200; // SliverAppBar'ın başlangıç yüksekliği
-  bool isAnimating = false;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _mediaSizeHeight = MediaQuery.of(context).size.height;
-
-    expandedHeight = textHeight;
-
-    _scrollController.addListener(_handleScroll);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void _handleScroll() {
-    if (isAnimating || !_scrollController.hasClients) return;
-
-    final offset = _scrollController.offset;
-
-    // Responsive eşikler
-    final triggerDownStart = _mediaSizeHeight * 0.15;
-    final triggerDownEnd = _mediaSizeHeight * 0.18;
-
-    final triggerUpStart = _mediaSizeHeight * 0.6 - 65;
-    final triggerUpEnd = _mediaSizeHeight * 0.6 - 50;
-
-    if (offset > triggerDownStart && offset < triggerDownEnd) {
-      _triggerScroll(_mediaSizeHeight * 0.6 + (expandedHeight - 45));
-    } else if (offset > triggerUpStart && offset < triggerUpEnd) {
-      _triggerScroll(0);
-    }
-  }
-
-  void _triggerScroll(double targetOffset) {
-    isAnimating = true;
-
-    _scrollController
-        .animateTo(
-          targetOffset,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInOut,
-        )
-        .whenComplete(() => isAnimating = false);
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose(); // Kaydırma denetleyicisini temizliyoruz
-    super.dispose();
-  }
-
+class _PageBuilderHomenewState extends BaseState<PageBuilderHomenewView>
+    with HomenewPageBuilderMixin {
   double calculateTextHeight(String text) {
     final textPainter = TextPainter(
       text: TextSpan(
@@ -99,14 +42,18 @@ class _PageBuilderHomenewState extends State<PageBuilderHomenewView> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      controller: _scrollController,
+      controller: scrollController,
       slivers: <Widget>[
-        BlocSelector<HomenewViewModel, HomenewState, (double, String, String)>(
+        BlocSelector<HomenewViewModel, HomenewState,
+            (double, String, String, String)>(
           selector: (state) {
             return (
               state.imageHeight ?? 250,
               state.data?.elementAt(widget.index - 1)['photo_url'] ?? '',
               state.data?.elementAt(widget.index - 1)['id'] ?? '',
+              formatTarih(
+                state.data?.elementAt(widget.index - 1)['created_at'],
+              ),
             );
           },
           builder: (context, state) {
@@ -146,7 +93,7 @@ class _PageBuilderHomenewState extends State<PageBuilderHomenewView> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: Text(
-                                  'Bugün',
+                                  state.$4,
                                   style: context.general.textTheme.bodySmall,
                                 ),
                               ),
@@ -257,7 +204,10 @@ class _PageBuilderHomenewState extends State<PageBuilderHomenewView> {
                         padding: const EdgeInsets.only(left: 8),
                         child: Text(
                           state,
-                          style: context.general.textTheme.headlineSmall,
+                          style:
+                              context.general.textTheme.headlineSmall?.copyWith(
+                            height: 1.1,
+                          ),
                         ),
                       ),
                     ),

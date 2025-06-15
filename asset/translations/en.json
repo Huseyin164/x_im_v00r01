@@ -7,7 +7,9 @@
         "profile": "Profile"
     },
     "home": {
-        "title": "Home Page"
+        "title": "Home Page",
+        "today": "Today",
+        "yesterday": "Yesterday"
     },
     "general": {
         "unknown": "Unknown",

@@ -1,29 +1,28 @@
-/* import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kartal/kartal.dart';
-import 'package:x_im_v00r01/feature/favorites/view/mixin/favorites_view_mixin.dart';
-import 'package:x_im_v00r01/feature/favorites/view_model/favorites_view_model.dart';
-import 'package:x_im_v00r01/feature/favorites/view_model/state/favorites_state.dart';
+import 'package:x_im_v00r01/feature/bos_yeniEkranAcmakIcic/view/mixin/name_view_mixin.dart';
+import 'package:x_im_v00r01/feature/bos_yeniEkranAcmakIcic/view_model/name_view_model.dart';
+import 'package:x_im_v00r01/feature/bos_yeniEkranAcmakIcic/view_model/state/name_state.dart';
 import 'package:x_im_v00r01/product/state/base/base_state.dart';
 
 @RoutePage()
-class FavoritesView extends StatefulWidget {
-  const FavoritesView({super.key});
+class NameView extends StatefulWidget {
+  const NameView({super.key});
 
   @override
-  State<FavoritesView> createState() => _FavoritesViewState();
+  State<NameView> createState() => _FavoritesViewState();
 }
 
-class _FavoritesViewState extends BaseState<FavoritesView>
-    with FavoritesViewMixin {
+class _FavoritesViewState extends BaseState<NameView> with NameViewMixin {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => favoritesViewModel,
+      create: (context) => nameViewModel,
       child: Scaffold(
         body: SafeArea(
-          child: BlocBuilder<FavoritesViewModel, FavoritesState>(
+          child: BlocBuilder<NameViewModel, NameState>(
             builder: (context, state) {
               return CustomScrollView(
                 slivers: [
@@ -49,4 +48,3 @@ class _FavoritesViewState extends BaseState<FavoritesView>
     );
   }
 }
- */

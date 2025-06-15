@@ -5,6 +5,7 @@ final class HomenewState extends Equatable {
   const HomenewState({
     required this.isLoading,
     required this.opacity,
+    required this.favCount,
     this.content,
     this.users,
     this.imageHeight,
@@ -21,6 +22,8 @@ final class HomenewState extends Equatable {
   final List<Map<String, dynamic>>? data;
   final Map<String, bool> favorites;
   final bool isLoadingFavRpc;
+  final int favCount;
+
   @override
   List<Object?> get props => [
         isLoading,
@@ -30,7 +33,8 @@ final class HomenewState extends Equatable {
         imageHeight,
         data,
         favorites,
-        isLoadingFavRpc
+        isLoadingFavRpc,
+        favCount,
       ];
 
   HomenewState copyWith({
@@ -42,6 +46,7 @@ final class HomenewState extends Equatable {
     List<Map<String, dynamic>>? data,
     Map<String, bool>? favorites,
     bool? isLoadingFavRpc,
+    int? favCount
   }) {
     return HomenewState(
       isLoading: isLoading ?? this.isLoading,
@@ -52,6 +57,7 @@ final class HomenewState extends Equatable {
       data: data ?? this.data,
       favorites: favorites ?? this.favorites,
       isLoadingFavRpc: isLoadingFavRpc ?? this.isLoadingFavRpc,
+      favCount: favCount ?? this.favCount
     );
   }
 }

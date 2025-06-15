@@ -42,7 +42,7 @@ class _HomenewViewState extends BaseState<HomenewView> with HomenewViewMixin {
   void didChangeDependencies() {
     super.didChangeDependencies();
     fetchData().then(
-      (value) {
+      (value_1) {
         // Data fetched successfully
         print('Data fetched successfully');
         /* final startIndex = widget.storyId != null
@@ -54,8 +54,10 @@ class _HomenewViewState extends BaseState<HomenewView> with HomenewViewMixin {
         _pageController =
             PageController(initialPage: startIndex >= 0 ? startIndex + 1 : 1); */
 
-        fetchStoryIdData(widget.storyId as String).then((value) {
-          homenewViewModel.changeLoading(false);
+        fetchStoryIdData(widget.storyId as String).then((value_2) {
+          fetchFavCount(value_1.first['id'] as String).then((val) {
+            homenewViewModel.changeLoading(false);
+          });
         });
       },
     ).catchError(
@@ -83,6 +85,7 @@ class _HomenewViewState extends BaseState<HomenewView> with HomenewViewMixin {
           padding: const EdgeInsets.only(left: 8, right: 8, top: 22),
           child: BlocSelector<HomenewViewModel, HomenewState, bool>(
             selector: (state) {
+              //!state.isLoading
               return !state.isLoading;
             },
             builder: (context, state) {
@@ -103,6 +106,8 @@ class _HomenewViewState extends BaseState<HomenewView> with HomenewViewMixin {
                           // Mevcut story ID'sini al
                           final storyId = homenewViewModel.state.data
                               ?.elementAt(value - 1)['id'];
+
+                          fetchFavCount(storyId as String);
 
                           /* context.router.updateRouteData(
                             '/homenew/${storyId ?? ''}',
